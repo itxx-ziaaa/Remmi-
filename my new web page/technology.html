@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Collection</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        :root {
+            --primary-bg: #1b1b1d; /* Matching the color grading */
+            --secondary-bg: #2c2c2e;
+            --accent-color: #ff00ff;
+            --hover-color: #e600e6;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: #f8f8f8;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-container select {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin: 0 10px;
+        }
+
+        .tech-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .tech-item {
+            background-color: var(--secondary-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            margin: 15px;
+            width: 300px;
+            transition: transform 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tech-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+
+        .tech-item:hover img {
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        .tech-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .tech-info h2 {
+            color: var(--accent-color);
+            margin: 0 0 10px;
+        }
+
+        .tech-info p {
+            color: #ccc;
+        }
+
+        .view-details,
+        .add-to-cart {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .view-details:hover,
+        .add-to-cart:hover {
+            background-color: var(--hover-color); /* Darker shade on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--secondary-bg);
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .notification {
+            display: none;
+            background-color: #1b1b1d;
+            color: #e600e6;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            top: 10px;
+            width: calc(100% - 40px);
+            left: 20px;
+            border-radius: 5px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Technology Collection</h1>
+    </header>
+
+    <div class="filter-container">
+        <label for="filter">Filter by:</label>
+        <select id="filter" onchange="filterItems()">
+            <option value="all">All</option>
+            <option value="tech1">Tech Item 1</option>
+            <option value="tech2">Tech Item 2</option>
+            <option value="tech3">Tech Item 3</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+
+    <div class="tech-container" id="techContainer">
+        <div class="tech-item" data-type="tech1">
+            <img src="technology-1.jpg" alt="Tech Item 1">
+            <div class="tech-info">
+                <h2>Tech Item 1</h2>
+                <p>Description of Tech Item 1.</p>
+                <button class="view-details" onclick="openModal('modal1')">View Details</button>
+                <button class="add-to-cart" onclick="addToCart('Tech Item 1')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="tech-item" data-type="tech2">
+            <img src="technology-2.jpeg" alt="Tech Item 2">
+            <div class="tech-info">
+                <h2>Tech Item 2</h2>
+                <p>Description of Tech Item 2.</p>
+                <button class="view-details" onclick="openModal('modal2')">View Details</button>
+                <button class="add-to-cart" onclick="addToCart('Tech Item 2')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="tech-item" data-type="tech3">
+            <img src="technology-3.jpeg" alt="Tech Item 3">
+            <div class="tech-info">
+                <h2>Tech Item 3</h2>
+                <p>Description of Tech Item 3.</p>
+                <button class="view-details" onclick="openModal('modal3')">View Details</button>
+                <button class="add-to-cart" onclick="addToCart('Tech Item 3')">Add to Cart</button>
+            </div>
+        </div>
+        <!-- Add more Tech items as needed -->
+    </div>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>Details for Tech Item 1</h2>
+            <p>More in-depth information about Tech Item 1.</p>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h2>Details for Tech Item 2</h2>
+            <p>More in-depth information about Tech Item 2.</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h2>Details for Tech Item 3</h2>
+            <p>More in-depth information about Tech Item 3.</p>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <footer>
+        <p>&copy; 2024 Technology Collection. All rights reserved. <br>
+        <a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        function addToCart(itemName) {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `Your ${itemName} has been added to your cart!`;
+            notification.style.display = "block";
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 3000);
+        }
+
+        function filterItems() {
+            const filterValue = document.getElementById('filter').value;
+            const techItems = document.querySelectorAll('.tech-item');
+
+            techItems.forEach(item => {
+                if (filterValue === 'all' || item.dataset.type === filterValue) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

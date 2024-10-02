@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Collection</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1b1b1d; /* Updated background color */
+            color: white; /* Default text color */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        header {
+            background-color: #ff00ff;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .fashion-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .fashion-item {
+            background-color: #2c2c2e; /* Updated background color for items */
+            border: 1px solid #444; /* Updated border color */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Slightly darker shadow */
+            margin: 10px;
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .fashion-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+
+        .fashion-item:hover img {
+            transform: scale(1.1); /* Scale effect on hover */
+        }
+
+        .fashion-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .fashion-info h2 {
+            color: #ff00ff; /* Header color for items */
+            margin: 0 0 10px;
+        }
+
+        .fashion-info p {
+            color: #ddd; /* Lighter color for descriptions */
+        }
+
+        .view-details {
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .view-details:hover {
+            background-color: #e600e6; /* Darker shade on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2c2c2e;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+.homee {
+    color: #ddd;
+}
+
+.homee:hover {
+    color: #ff00ff;
+}
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.8); 
+            padding-top: 60px;
+            animation: fadeIn 0.5s;
+        }
+
+        .modal-content {
+            background-color: #2c2c2e; /* Match modal background with item color */
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            animation: slideIn 0.5s;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white; /* Change close button color on hover */
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Fashion Collection</h1>
+    </header>
+
+    <div class="fashion-container">
+        <div class="fashion-item">
+            <img src="brand-1.png" alt="Fashion Item 1">
+            <div class="fashion-info">
+                <h2>Fashion Item 1</h2>
+                <p>Description of Fashion Item 1. This could include details about the style, material, and inspiration.</p>
+                <button class="view-details" onclick="openModal('modal1')">View Details</button>
+            </div>
+        </div>
+        <div class="fashion-item">
+            <img src="brand-1.png" alt="Fashion Item 2">
+            <div class="fashion-info">
+                <h2>Fashion Item 2</h2>
+                <p>Description of Fashion Item 2. This could include details about the style, material, and inspiration.</p>
+                <button class="view-details" onclick="openModal('modal2')">View Details</button>
+            </div>
+        </div>
+        <div class="fashion-item">
+            <img src="brand-1.png" alt="Fashion Item 3">
+            <div class="fashion-info">
+                <h2>Fashion Item 3</h2>
+                <p>Description of Fashion Item 3. This could include details about the style, material, and inspiration.</p>
+                <button class="view-details" onclick="openModal('modal3')">View Details</button>
+            </div>
+        </div>
+        <!-- Add more fashion items as needed -->
+    </div>
+
+    <!-- Modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>Details for Fashion Item 1</h2>
+            <p>More in-depth information about Fashion Item 1.</p>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h2>Details for Fashion Item 2</h2>
+            <p>More in-depth information about Fashion Item 2.</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h2>Details for Fashion Item 3</h2>
+            <p>More in-depth information about Fashion Item 3.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Fashion Collection. All rights reserved.</p>
+        <a href="index.html" class="homee">Back to Home</a>
+    </footer>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Close the modal when clicking anywhere outside of it
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        };
+    </script>
+
+</body>
+</html>
